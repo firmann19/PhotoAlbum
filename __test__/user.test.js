@@ -3,9 +3,9 @@ const app = require("../app");
 const { sequelize } = require("../models");
 
 const userData = {
-  username: "user_pertama",
-  email: "user-pertama@gmail.com",
-  password: "12345678",
+  username: "firman1911",
+  email: "firmanramadhan@gmail.com",
+  password: "firman11",
 };
 
 describe("POST /users/register", () => {
@@ -48,8 +48,8 @@ describe("POST /users/login", () => {
 });
 
 const wrongUser = {
-  username: "wrong user",
-  email: "wronguser@gmail.com",
+  username: "delpia01",
+  email: "delpiamaharani@gmail.com",
   password: "123456",
 };
 
@@ -72,12 +72,11 @@ it("Should send response with 401 status code", (done) => {
 
 afterAll((done) => {
   sequelize.queryInterface
-    .bulkDelete("User", {})
+    .bulkDelete("Users", {})
     .then(() => {
       return done();
     })
     .catch((err) => {
-      console.log(err);
       done(err);
     });
 });

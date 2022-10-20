@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test npx jest --runInBand --detectOpenHandles --forceExit",
     "db:create:test": "NODE_ENV=test npx sequelize db:create",
-    "db:migrate:test": "NODE_ENV=test npx sequelize db:migration",
+    "db:migrate:test": "NODE_ENV=test npx sequelize db:migrate",
     "dev": "nodemon app.js"
   },
   "author": "firman",
