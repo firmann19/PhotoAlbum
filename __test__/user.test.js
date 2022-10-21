@@ -47,6 +47,7 @@ describe("POST /users/login", () => {
   });
 });
 
+
 const wrongUser = {
   username: "delpia01",
   email: "delpiamaharani@gmail.com",
@@ -70,6 +71,7 @@ it("Should send response with 401 status code", (done) => {
     });
 });
 
+
 afterAll((done) => {
   sequelize.queryInterface
     .bulkDelete("Users", {})
@@ -77,6 +79,7 @@ afterAll((done) => {
       return done();
     })
     .catch((err) => {
+      console.log(err)
       done(err);
     });
 });
