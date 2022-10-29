@@ -1,4 +1,3 @@
-const PhotoController = require("../controllers/photoController");
 const { Photo } = require("../models");
 
 function authorization(req, res, next) {
