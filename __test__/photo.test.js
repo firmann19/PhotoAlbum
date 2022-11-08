@@ -28,36 +28,36 @@ const wrongPhotoData = {
 
 
 beforeAll((done) => {
-  // create user
-  request(app)
-      .post('/user/register')
-      .send(userData)
-      .end(function (err,res) {
-          if(err) {
-              done(err)
-          }
+    // create user
+    request(app)
+        .post('/user/register')
+        .send(userData)
+        .end(function (err,res) {
+            if(err) {
+                done(err)
+            }
 
-          let payload = {
-              id: res.body.data.id,
-              email: res.body.data.email,
-          }
+            let payload = {
+                id: res.body.data.id,
+                email: res.body.data.email,
+            }
 
-          token = generateToken(payload);
+            token = generateToken(payload);
 
-          // insert photo
-          request(app)
-              .post('/photos')
-              .set('token',token)
-              .send(photoData)
-              .end(function (err,res) {
-                  if(err) {
-                      done(err)
-                  }
+            // insert photo
+            request(app)
+                .post('/photo')
+                .set('token',token)
+                .send(photoData)
+                .end(function (err,res) {
+                    if(err) {
+                        done(err)
+                    }
 
-                  photoId = res.body.data.id;
-                  done()
-              })
-      })
+                    photoId = res.body.data.id;
+                    done()
+                })
+        })
 })
 
 /**
