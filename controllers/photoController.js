@@ -15,15 +15,26 @@ class PhotoController {
 
   static async GetOnePhotoByID(req, res) {
     let id = req.params.id;
-    try {
-      const photoId = Photo.findByPk(id)
+    const photoId = Photo.findByPk(id)
 
-      if (photoId) {
-        return res.status(200).json(photoData);
-      }
-    } catch (error) {
-      return res.status(404).json({ message: "id not found" });
-    }
+      .then((result) => {
+        if (!result) {
+          return res.status(404).json({
+            error: true,
+            code: 404,
+            message: "photo not found",
+          });
+        }
+
+        res.status(200).json({
+          error: false,
+          code: 200,
+          data: result,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
   }
 
   static async createPhoto(req, res) {
@@ -31,9 +42,9 @@ class PhotoController {
     const user = res.locals.user;
 
     try {
-      if(!title) {
-        throw{message: "title is undefined"}
-      } 
+      if (!title) {
+        throw { message: "title is undefined" };
+      }
 
       const photoData = await Photo.create({
         title,
