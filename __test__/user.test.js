@@ -79,7 +79,6 @@ afterAll((done) => {
       return done();
     })
     .catch((err) => {
-      console.log(err)
       done(err);
     });
 });
